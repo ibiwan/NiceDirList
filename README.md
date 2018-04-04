@@ -2,7 +2,9 @@
 
 A single-file solution for pretty directory listings
 
-## Features:
+See it in use at https://static.netsyms.net and https://dl.netsyms.net
+
+## Features
 
 * Built-in file type guessing
 * FontAwesome icons
