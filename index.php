@@ -1241,8 +1241,10 @@ foreach ($files as $f) {
 		}
 		echo $f . "</a>\n";
 		if (!is_dir($dir . "/" . $f) && $MIRRORBASE != "") {
-			echo "\t<a href=\"$path$f\" class=\"ml-auto my-0 btn btn-outline-default btn-sm\"><span class=\"fas fa-cloud-download-alt\"></span> Primary</a>\n";
-			echo "\t<a href=\"$MIRRORBASE$path$f\" class=\"ml-2 my-0 btn btn-outline-default btn-sm\"><span class=\"fas fa-cloud-download-alt\"></span> Mirror</a>\n";
+			echo "<span class=\"d-inline-flex justify-content-end align-items-center flex-wrap ml-auto\">\n";
+			echo "\t<a href=\"$path$f\" class=\"my-1 btn btn-outline-default btn-sm\"><span class=\"fas fa-cloud-download-alt\"></span> Primary</a>\n";
+			echo "\t<a href=\"$MIRRORBASE$path$f\" class=\"ml-2 my-1 btn btn-outline-default btn-sm\"><span class=\"fas fa-cloud-download-alt\"></span> Mirror</a>\n";
+			echo "</span>";
 		}
 		echo "</li>\n\n";
 	}
