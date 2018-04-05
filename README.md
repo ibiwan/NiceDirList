@@ -18,4 +18,5 @@ See it in use at https://static.netsyms.net and https://dl.netsyms.net
     * For non-Apache, configure your server to serve /index.php for all subfolders
 * Edit the top of `index.php` to customize with your branding
     * Edit the list of ignored filenames
+    * Add any mirror URLs you have
     * (Recommended) Change the CDN URLs for Bootstrap and FontAwesome to your CDN of choice
