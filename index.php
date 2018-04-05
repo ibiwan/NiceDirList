@@ -15,8 +15,18 @@ $IGNORE = [
 ];
 // Actual path of the wwwroot
 $ROOTPATH = "/var/www/clients/client1/web68/web";
-// If set to a URL, will be used as the base path for mirror links
-$MIRRORBASE = "";
+
+// Fill in to add mirror download links to files
+$MIRRORBASE = [];
+/*
+$MIRRORBASE = [
+	[
+		"name" => "Mirror 1",
+		"base" => "http://example.com/downloads"
+	],
+];
+*/
+
 // Bootstrap and optional CSS
 $STYLESHEETS = [
 	"https://static.netsyms.net/bootstrap/4.0.0/bootstrap.materia.min.css"
@@ -1240,10 +1250,14 @@ foreach ($files as $f) {
 			echo "<span class=\"$icon fa-fw\"></span> ";
 		}
 		echo $f . "</a>\n";
-		if (!is_dir($dir . "/" . $f) && $MIRRORBASE != "") {
+		if (count($MIRRORBASE) > 0 && !is_dir($dir . "/" . $f)) {
 			echo "<span class=\"d-inline-flex justify-content-end align-items-center flex-wrap ml-auto\">\n";
-			echo "\t<a href=\"$path$f\" class=\"my-1 btn btn-outline-default btn-sm\"><span class=\"fas fa-cloud-download-alt\"></span> Primary</a>\n";
-			echo "\t<a href=\"$MIRRORBASE$path$f\" class=\"ml-2 my-1 btn btn-outline-default btn-sm\"><span class=\"fas fa-cloud-download-alt\"></span> Mirror</a>\n";
+			echo "\t<a href=\"$path$f\" class=\"my-1 btn btn-outline-default btn-sm\"><span class=\"fas fa-cloud-download-alt\"></span> Main</a>\n";
+			foreach ($MIRRORBASE as $mirror) {
+				$name = $mirror["name"];
+				$base = $mirror["base"];
+				echo "\t<a href=\"$base$path$f\" class=\"ml-2 my-1 btn btn-outline-default btn-sm\"><span class=\"fas fa-cloud-download-alt\"></span> $name</a>\n";
+			}
 			echo "</span>";
 		}
 		echo "</li>\n\n";
