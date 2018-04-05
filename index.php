@@ -90,6 +90,7 @@ $MIMEICONS = [
 	"text/less" => "fab fa-less",
 	"text/sass" => "fab fa-sass",
 	"text/markdown" => "fas fa-align-left",
+	"text/checksum" => "fas fa-file-medical-alt",
 	"text/other" => "fas fa-file-alt",
 	// Archives and disk images
 	"application/x-iso9660-image" => "fas fa-hdd",
@@ -99,9 +100,12 @@ $MIMEICONS = [
 	"application/x-bzip2" => "fas fa-file-archive",
 	"application/x-7z-compressed" => "fas fa-file-archive",
 	"application/x-msi" => "fab fa-windows",
+	"application/x-msdownload" => "fab fa-windows",
 	"application/java-archive" => "fas fa-coffee",
 	"application/x-rar-compressed" => "fas fa-file-archive",
 	"application/x-tar" => "fas fa-file-archive",
+	"application/x-apple-diskimage" => "fab fa-apple",
+	"application/imgfile" => "fas fa-hdd",
 	// Fonts
 	"application/vnd.ms-fontobject" => "fas fa-font",
 	"application/x-font-ttf" => "fas fa-font",
@@ -109,6 +113,7 @@ $MIMEICONS = [
 	"font/ttf" => "fas fa-font",
 	"font/woff" => "fas fa-font",
 	"font/woff2" => "fas fa-font",
+	"font/other" => "fas fa-font",
 	// Images
 	"image/svg+xml" => "fas fa-file-image",
 	"image/png" => "fas fa-image",
@@ -119,6 +124,7 @@ $MIMEICONS = [
 	"image/x-icon" => "fas fa-image",
 	"image/tiff" => "fas fa-image",
 	"image/webp" => "fas fa-image",
+	"image/other" => "fas fa-image",
 	// Audio
 	"audio/acc" => "fas fa-file-audio",
 	"audio/ogg" => "fas fa-file-audio",
@@ -159,6 +165,20 @@ $EXT2MIME = [
 	"less" => "text/less",
 	"scss" => "text/sass",
 	"md" => "text/markdown",
+	"md5" => "text/checksum",
+	"md5sum" => "text/checksum",
+	"md5sums" => "text/checksum",
+	"sha1" => "text/checksum",
+	"sha1sum" => "text/checksum",
+	"sha1sums" => "text/checksum",
+	"sha256" => "text/checksum",
+	"sha256sum" => "text/checksum",
+	"sha256sums" => "text/checksum",
+	"sha512" => "text/checksum",
+	"sha512sum" => "text/checksum",
+	"sha512sums" => "text/checksum",
+	"gz" => "application/x-gzip",
+	"img" => "application/imgfile",
 	// From Apache: http://svn.apache.org/viewvc?view=revision&revision=1810122
 	"ez" => "application/andrew-inset",
 	"aw" => "application/applixware",
@@ -1266,6 +1286,10 @@ foreach ($files as $f) {
 		} else {
 			$icon = "fas fa-file";
 			$extension = pathinfo("$dir/$f")['extension'];
+			// If we don't have an extension, try using the whole filename
+			if ($extension == "") {
+				$extension = $f;
+			}
 			$mimetype = "application/octet-stream";
 			// Lookup mimetype from extension
 			if (array_key_exists($extension, $EXT2MIME)) {
