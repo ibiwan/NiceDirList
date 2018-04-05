@@ -1,3 +1,5 @@
+Forked from https://source.netsyms.com/Netsyms/NiceDirlist.git
+
 # Nice Dirlist
 
 A single-file solution for pretty directory listings
